@@ -7,8 +7,8 @@ services:
       - LDAP_DOMAIN=skynet.com
       - LDAP_ADMIN_PASSWORD=${LDAP_ADMIN_PASSWORD}
     volumes:
-      - /tmp/ldap-data:/var/lib/ldap
-      - /tmp/ldap-slapd:/etc/ldap/slapd.d
+      - ${LDAP_DATA_DIR}:/var/lib/ldap
+      - ${LDAP_DATA_SLAPD}:/etc/ldap/slapd.d
     networks:
       ldap:
         aliases:
