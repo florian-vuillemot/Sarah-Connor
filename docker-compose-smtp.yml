@@ -1,0 +1,14 @@
+version: '3'
+services:
+  postfix:
+    image: juanluisbaptiste/postfix:latest
+    ports:
+      - "1025:25"
+    environment:
+      - SMTP_SERVER=${SMTP_SERVER}
+      - SMTP_USERNAME=${SMTP_USERNAME}
+      - SMTP_PASSWORD=${SMTP_PASSWORD} 
+      - SERVER_HOSTNAME=${SERVER_HOSTNAME}
+    restart: always
+    volumes:
+      - "/etc/localtime:/etc/localtime:ro"
