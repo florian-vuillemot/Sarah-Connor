@@ -5,7 +5,7 @@ services:
     image: owncloud
     restart: always
     ports:
-      - ${OWNCLOUD_PORT}:80
+      - ${OWNCLOUD_PORT}:8080
     volumes:
       - /owncloud/owncould:/var/www/html
 
