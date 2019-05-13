@@ -4,13 +4,15 @@ services:
    db:
      image: mysql:5.7
      volumes:
-       - db_data:/var/lib/mysql
+       - db_data_word:/var/lib/mysql
      restart: always
      environment:
        MYSQL_ROOT_PASSWORD: somewordpress
        MYSQL_DATABASE: wordpress
        MYSQL_USER: wordpress
        MYSQL_PASSWORD: wordpress
+     networks:
+       - website
 
    wordpress:
      depends_on:
@@ -24,5 +26,27 @@ services:
        WORDPRESS_DB_USER: wordpress
        WORDPRESS_DB_PASSWORD: wordpress
        WORDPRESS_DB_NAME: wordpress
+     networks:
+       website:
+         aliases:
+           - skynet.local
+
+   reverse_proxy:
+     image: nginx
+     ports:
+       - "443:443"
+     volumes:
+       - ./wordpress:/etc/nginx/conf.d
+       - ./wordpress:/etc/nginx/conf.d
+       - ./wordpress:/etc/nginx/conf.d
+     depends_on:
+       - wordpress
+     networks:
+       - website
+
 volumes:
-    db_data: {}
+    db_data_word: {}
+
+networks:
+  website:
+    driver: bridge
