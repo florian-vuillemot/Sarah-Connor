@@ -37,8 +37,6 @@ services:
        - "443:443"
      volumes:
        - ./wordpress:/etc/nginx/conf.d
-       - ./wordpress:/etc/nginx/conf.d
-       - ./wordpress:/etc/nginx/conf.d
      depends_on:
        - wordpress
      networks:
