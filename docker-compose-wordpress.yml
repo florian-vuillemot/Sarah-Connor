@@ -11,6 +11,8 @@ services:
        MYSQL_DATABASE: wordpress
        MYSQL_USER: wordpress
        MYSQL_PASSWORD: wordpress
+     networks:
+       - website
 
    wordpress:
      depends_on:
@@ -24,5 +26,25 @@ services:
        WORDPRESS_DB_USER: wordpress
        WORDPRESS_DB_PASSWORD: wordpress
        WORDPRESS_DB_NAME: wordpress
+     networks:
+       website:
+         aliases:
+           - skynet.local
+
+   reverse_proxy:
+     image: nginx
+     ports:
+       - "443:443"
+     volumes:
+       - ./wordpress:/etc/nginx/conf.d
+     depends_on:
+       - wordpress
+     networks:
+       - website
+
 volumes:
     db_data: {}
+
+networks:
+  website:
+    driver: bridge

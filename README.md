@@ -31,6 +31,8 @@ Provide multiples services based on docker and docker-compose. Services have to 
 We choosed to create multiples docker-compose standalones. Each docker-compose can turn on different server and have to be configure on run time.
 So each docker-compose has it's owned network totally segregade (by docker) from other networks. This is better for security and standalone living.
 
+We add SSL on Wordpress thanks to a reverse proxy based on Nginx. Note: Certificated is auto signed.
+
 ## How to run
 
 - Copy `.env.example` in .env
