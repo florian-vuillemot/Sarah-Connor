@@ -5,11 +5,13 @@ services:
     image: owncloud
     restart: always
     ports:
-      - ${OWNCLOUD_PORT}:8080
+      - ${OWNCLOUD_PORT}:80
     volumes:
       - /owncloud/owncould:/var/www/html
+    networks:
+      - ldap
 
-  mysql:
+  ownncloud_mysql:
     image: mariadb
     restart: always
     environment:
