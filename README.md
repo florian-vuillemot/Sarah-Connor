@@ -38,4 +38,5 @@ We add SSL on Wordpress thanks to a reverse proxy based on Nginx. Note: Certific
 - Copy `.env.example` in .env
 - Replace `.env` value by your values
 - Run `docker-compose -f docker-compose-service up` (you can add multiple `-f docker-compose-service` before the `up`)
+  - Ex: docker-compose -f docker-compose-dolibar.yml -f docker-compose-ldap.yml -f docker-compose-owncloud.yml -f docker-compose-samba.yml -f docker-compose-smtp.yml -f docker-compose-wordpress.yml up
 
