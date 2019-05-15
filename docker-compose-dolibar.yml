@@ -1,13 +1,16 @@
-mariadb:
+version: '3.1'
+
+services:
+  dolibarr_mariadb:
     image: mariadb:latest
     environment:
         MYSQL_ROOT_PASSWORD: root
         MYSQL_DATABASE: dolibarr
 
-web:
+  dolibarr:
     image: tuxgasy/dolibarr
     environment:
-        DOLI_DB_HOST: mariadb
+        DOLI_DB_HOST: dolibarr_mariadb
         DOLI_DB_USER: root
         DOLI_DB_PASSWORD: root
         DOLI_DB_NAME: dolibarr
@@ -16,4 +19,4 @@ web:
     ports:
         - "8081:80"
     links:
-        - mariadb
+        - dolibarr_mariadb
